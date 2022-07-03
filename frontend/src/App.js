@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Persons from './components/Persons'
 import Form from './components/Form'
 import Filter from './components/Filter'
-import getPersons from './services/getPersons'
 import './index.css'
+import getPersons from './services/getPersons'
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -81,14 +81,14 @@ const App = () => {
           setTimeout(() => {
             setErrorMsg(null)
           }, 4000)
-          })
-          .catch(error => {
-            console.log("tassa",error.response.data)
-            setErrorMsg(`${error.response.data.error}`)
-            setTimeout(() => {
-              setErrorMsg(null)
-            }, 4000)
-      })
+        })
+        .catch(error => {
+          console.log("tassa", error.response.data)
+          setErrorMsg(`${error.response.data.error}`)
+          setTimeout(() => {
+            setErrorMsg(null)
+          }, 4000)
+        })
     }
     setNewName("")
     setNewNumber("")
