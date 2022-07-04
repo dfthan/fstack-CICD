@@ -12,7 +12,7 @@ app.use(morgan(":method :url :status :res[content-length] - :response-time ms :p
 
 console.log(__dirname)
 
-app.use(express.static('frontend/build'))
+app.use(express.static('build'))
 
 
 
