@@ -4,14 +4,18 @@ var morgan = require('morgan')
 require("dotenv").config()
 const app = express()
 const Person = require("./models/person")
-
 app.use(express.json())
-
+const path = require('path')
 app.use(cors())
 morgan.token("post", (req) => JSON.stringify(req.body))
 app.use(morgan(":method :url :status :res[content-length] - :response-time ms :post"))
+
+
 app.use(express.static('frontend/build'))
 
+app.get("/asd", (req, res) => {
+    res.sendFile(path.join(__dirname + '/frontend/build/index.html'))
+})
 
 app.get("/info", (req, res) => {
     console.log(Date.now())
