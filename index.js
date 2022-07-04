@@ -9,10 +9,9 @@ app.use(express.json())
 
 app.use(cors())
 morgan.token("post", (req) => JSON.stringify(req.body))
-// Tiny ei enään käytössä, mutta oletan että tehtävässä 3.8 saa tehdä näin
 app.use(morgan(":method :url :status :res[content-length] - :response-time ms :post"))
 
-app.use("/", express.static('build'))
+app.use("/", express.static('frontend/build'))
 
 app.get("/info", (req, res) => {
     console.log(Date.now())
@@ -86,13 +85,6 @@ app.put("/api/persons/:id", (req, res, next) => {
         .catch(error => next(error))
 })
 
-const badEndpoint = (req, res) => {
-    res.status(404).send({
-        error: "Website broke or you are looking for a bad endpoint"
-    })
-}
-
-app.use(badEndpoint)
 
 const handleError = (error, req, res, next) => {
     console.log(error.message)
@@ -112,7 +104,7 @@ const handleError = (error, req, res, next) => {
 
 app.use(handleError)
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 80
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}/api/persons`)
 })
