@@ -10,8 +10,8 @@ app.use(express.json())
 app.use(cors())
 morgan.token("post", (req) => JSON.stringify(req.body))
 app.use(morgan(":method :url :status :res[content-length] - :response-time ms :post"))
+app.use(express.static('frontend/build'))
 
-app.use("/", express.static('frontend/build'))
 
 app.get("/info", (req, res) => {
     console.log(Date.now())
@@ -85,6 +85,13 @@ app.put("/api/persons/:id", (req, res, next) => {
         .catch(error => next(error))
 })
 
+const badEndpoint = (req, res) => {
+    res.status(404).send({
+        error: "Website broke or you are looking for a bad endpoint"
+    })
+}
+
+app.use(badEndpoint)
 
 const handleError = (error, req, res, next) => {
     console.log(error.message)
