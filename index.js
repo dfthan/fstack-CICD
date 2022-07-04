@@ -5,7 +5,6 @@ require("dotenv").config()
 const app = express()
 const Person = require("./models/person")
 
-app.use(express.static('build'))
 app.use(express.json())
 
 app.use(cors())
@@ -13,7 +12,7 @@ morgan.token("post", (req) => JSON.stringify(req.body))
 // Tiny ei enään käytössä, mutta oletan että tehtävässä 3.8 saa tehdä näin
 app.use(morgan(":method :url :status :res[content-length] - :response-time ms :post"))
 
-
+app.use("/", express.static('build'))
 
 app.get("/info", (req, res) => {
     console.log(Date.now())
