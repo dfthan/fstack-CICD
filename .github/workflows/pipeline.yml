@@ -31,6 +31,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "tranquil-arches-00913"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          healthcheck: "https://hidden-waters-12808.herokuapp.com/health"
+          healthcheck: "https://tranquil-arches-00913.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
