@@ -12,11 +12,8 @@ app.use(morgan(":method :url :status :res[content-length] - :response-time ms :p
 
 console.log(__dirname)
 
-app.use("/a", express.static(path.join(__dirname, 'frontend/build')))
+app.use(express.static('frontend/build'))
 
-app.get("/asd", (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend/build/index.html'))
-})
 
 
 app.get("/info", (req, res) => {
