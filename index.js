@@ -89,7 +89,7 @@ app.put("/api/persons/:id", (req, res, next) => {
 
 const badEndpoint = (req, res) => {
     res.status(404).send({
-        error: "Wrong URL! try /api/persons"
+        error: "Website broke or you are looking for a bad endpoint"
     })
 }
 
