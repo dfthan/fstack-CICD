@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
 
 jobs:
   deployment_pipeline:
@@ -21,3 +24,13 @@ jobs:
         run: cd frontend && npm run build
       - name: lint
         run: npm run lint
+      - name: heroku deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
+        if: ${{ github.event_name == 'push' }}
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "tranquil-arches-00913"
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          healthcheck: "https://hidden-waters-12808.herokuapp.com/health"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true

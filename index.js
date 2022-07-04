@@ -48,6 +48,10 @@ app.get("/api/persons/:id", (req, res, next) => {
 
 })
 
+app.get("/health", (req, res) => {
+    res.send("ok")
+})
+
 app.delete("/api/persons/:id", (req, res, next) => {
 
     Person.findByIdAndRemove(req.params.id)
