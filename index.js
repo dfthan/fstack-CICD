@@ -6,15 +6,10 @@ const app = express()
 const Person = require("./models/person")
 app.use(express.json())
 app.use(cors())
-const path = require('path')
 morgan.token("post", (req) => JSON.stringify(req.body))
 app.use(morgan(":method :url :status :res[content-length] - :response-time ms :post"))
 
-console.log(__dirname)
-
 app.use(express.static('build'))
-
-
 
 app.get("/info", (req, res) => {
     console.log(Date.now())
