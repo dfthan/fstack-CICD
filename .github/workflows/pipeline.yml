@@ -23,7 +23,7 @@ jobs:
       - name: build
         run: cd frontend && npm run build
       - name: lint
-        run: npm run lint & ls -la
+        run: npm run lint
       - name: heroku deploy
         uses: akhileshns/heroku-deploy@v3.12.12
         if: ${{ github.event_name == 'push' }}

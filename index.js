@@ -67,7 +67,6 @@ app.post("/api/persons", (req, res, next) => {
             res.json(saved)
         })
         .catch(error => next(error))
-
 })
 
 app.put("/api/persons/:id", (req, res, next) => {
@@ -92,8 +91,6 @@ const badEndpoint = (req, res) => {
 app.use(badEndpoint)
 
 const handleError = (error, req, res, next) => {
-    console.log(error.message)
-
     if (error.name === "CastError") {
         return res.status(400).send({
             error: `Bad id!`
